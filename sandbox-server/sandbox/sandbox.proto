@@ -1,0 +1,17 @@
+syntax = "proto3";
+package sandbox;
+
+message getTotalNumParams{}
+
+message addNumParams {
+  int32 number = 1;
+}
+
+message totalNum {
+  int32 total = 1;
+}
+
+service addNumService {
+  rpc addNum(addNumParams) returns (totalNum) {}
+  rpc getTotalNum(getTotalNumParams) returns (totalNum) {}
+}

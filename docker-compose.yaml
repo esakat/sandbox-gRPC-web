@@ -1,0 +1,25 @@
+version: "3"
+services:
+  proxy:
+    build: ./sandbox-proxy
+    ports:
+      - "8001:8001"
+    links:
+      - "server"
+
+  server:
+    build: ./sandbox-server
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./sandbox-server:/go/src/sandbox-server
+    container_name: "server"
+
+  client:
+    build: ./sandbox-client
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./sandbox-client:/sandbox-client
+    links:
+      - "proxy"
